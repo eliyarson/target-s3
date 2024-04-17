@@ -398,6 +398,8 @@ class FormatParquet(FormatBase):
                 df.schema,
                 compression="gzip",  # TODO: support multiple compression types
                 filesystem=self.file_system,
+                coerce_timestamps="ms",
+                allow_truncated_timestamps=True,
             ).write_table(df)
         except Exception as e:
             self.logger.error(e)
